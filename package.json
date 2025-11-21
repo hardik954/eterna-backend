@@ -1,0 +1,40 @@
+{
+  "name": "eterna-assignment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "dev": "nodemon src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "kill": "Stop-Process -Name node -Force"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@fastify/websocket": "^11.2.0",
+    "@prisma/client": "5.22.0",
+    "bullmq": "^5.64.0",
+    "dotenv": "^17.2.3",
+    "fastify": "^5.6.2",
+    "fastify-plugin": "^5.1.0",
+    "ioredis": "^5.8.2",
+    "pino": "^10.1.0",
+    "pino-pretty": "^13.1.2",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.10.1",
+    "@types/ws": "^8.18.1",
+    "jest": "^30.2.0",
+    "nodemon": "^3.1.11",
+    "prisma": "5.22.0",
+    "ts-jest": "^29.4.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}
