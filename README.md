@@ -1,6 +1,6 @@
 # Solana DEX Routing Backend
 
-A backend system for a Solana DEX routing and order execution engine, built with Node.js, Fastify, BullMQ, Redis, and PostgreSQL.
+A backend system for a Solana DEX routing and order execution engine (MOCK), built with Node.js, Fastify, BullMQ, Redis, and PostgreSQL.
 
 ## Features
 
@@ -26,7 +26,7 @@ A backend system for a Solana DEX routing and order execution engine, built with
     - Docker & Docker Compose
 
 2.  **Installation**:
-    ```bash
+    ```
     npm install
     ```
 
@@ -40,17 +40,17 @@ A backend system for a Solana DEX routing and order execution engine, built with
     ```
 
 4.  **Start Infrastructure**:
-    ```bash
+    ```
     docker-compose up -d
     ```
 
 5.  **Run Migrations**:
-    ```bash
+    ```
     npx prisma migrate dev --name init
     ```
 
 6.  **Start Server**:
-    ```bash
+    ```
     npm run dev
     ```
 
@@ -58,7 +58,7 @@ A backend system for a Solana DEX routing and order execution engine, built with
 
 ### Execute Order
 
-**Endpoint**: `POST /api/orders/execute`
+**Endpoint**: `POST http://localhost:3000/api/orders/execute`
 
 **Body**:
 ```json
@@ -73,14 +73,14 @@ A backend system for a Solana DEX routing and order execution engine, built with
 ```json
 {
   "success": true,
-  "orderId": "uuid-string",
+  "orderId": "uiqueorderId-string",
   "message": "Order queued. Connect to WebSocket for updates."
 }
 ```
 
 ### WebSocket Stream
 
-**URL**: `ws://localhost:3000/ws/orders/:orderId`
+**URL**: `ws://localhost:3000/ws/orders/<orderId>`
 
 **Messages**:
 ```json
@@ -90,12 +90,7 @@ A backend system for a Solana DEX routing and order execution engine, built with
 { "status": "confirmed", "txHash": "...", "price": 102.5, "dex": "Raydium" }
 ```
 
-## Design Decisions
 
--   **Market Order**: Chosen as the primary order type for simplicity and speed. The system focuses on finding the best current price and executing immediately.
--   **Extensibility**:
-    -   **Limit Orders**: Can be implemented by adding a price check in the worker or a separate scheduled job that checks prices periodically before adding to the execution queue.
-    -   **Sniper Orders**: Would require monitoring mempool or new pool events, which can be added as a separate service that triggers the execution queue when conditions are met.
 
 ## Architecture
 
@@ -104,3 +99,4 @@ A backend system for a Solana DEX routing and order execution engine, built with
 3.  **Worker Layer**: Processes orders, calls the Router, and updates DB/WebSocket.
 4.  **Router Layer**: Simulates DEX interactions.
 5.  **WebSocket Layer**: Streams updates to the client.
+
