@@ -90,18 +90,3 @@ Fake transaction hashes.
 
 Great for demonstrating architecture without RPC dependencies.
 
-7. End-to-End Flow Summary
-
-Once the engine is running, a user can:
-
-Submit an order through one HTTP endpoint.
-
-Receive all status updates via WebSocket.
-
-Have the system automatically choose the best DEX.
-
-Watch the transaction build, submit, retry, and confirm in real-time.
-
-Get the final "confirmed" or "failed" status with details.
-
-This provides a clear, production-style demonstration of a real-world order execution pipeline.
